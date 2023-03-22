@@ -21,7 +21,7 @@ public class AdminController {
     }
 
     @GetMapping("/page")
-    public String adminPage(Model model, UserDetails userDetails) {
+    public String adminPage(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         model.addAttribute("users", userService.getAllUsers());
         return "administrator";
     }
