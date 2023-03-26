@@ -21,11 +21,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
     @Transactional(readOnly = true)
     public User findByUsername(String email) {
         return userRepository.findByUsername(email);
     }
 
+    @Override
     @Transactional
     public void saveUser(User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -33,17 +35,19 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
+    @Override
     @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
+    @Override
     @Transactional
     public void adminRedactor(User user, Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -61,6 +65,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public User getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
+    @Override
     @Transactional
     public void delete(Long id) {
         userRepository.delete(userRepository.getById(id));
