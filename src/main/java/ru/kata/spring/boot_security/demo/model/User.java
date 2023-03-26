@@ -5,22 +5,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Set;
 
 
 @Entity
-@Table (name = "users")
+@Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @Column (name = "id")
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column (name = "name")
+    @Column(name = "name")
     private String name;
-    @Column (name = "surname")
+    @Column(name = "surname")
     private String surname;
-    @Column (name = "email")
+    @Column(name = "email")
     private String email;
     @Column(name = "password")
     private String password;
@@ -87,21 +86,12 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public boolean isAdmin() {
-        for (Role role : roles) {
-            if (Objects.equals(role.getRoleName(), "ROLE_ADMIN")) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", firstName='" + name + '\'' +
+                ", lastName='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +

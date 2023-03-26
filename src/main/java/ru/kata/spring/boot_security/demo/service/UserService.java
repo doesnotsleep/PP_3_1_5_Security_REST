@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
-
-    void delete(Long id);
     User findByUsername(String email);
 
     void saveUser(User user);
@@ -18,5 +16,4 @@ public interface UserService extends UserDetailsService {
     Optional<User> getUserById(Long id);
 
     void adminRedactor(User user, Long id);
-    User getUserByEmail(String email);
 }
