@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.kata.spring.boot_security.demo.configs.MyPasswordEncoder;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
@@ -17,7 +18,8 @@ import java.util.List;
 public class UserServiceImpl implements UserDetailsService, UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    private final MyPasswordEncoder myPasswordEncoder = new MyPasswordEncoder();
 
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -26,7 +28,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Transactional
     public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(myPasswordEncoder.encode(user.getPassword()));
         user.setUsername(user.getEmail());
         userRepository.save(user);
     }
@@ -48,7 +50,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Transactional
     public void update(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(myPasswordEncoder.encode(user.getPassword()));
         user.setUsername(user.getEmail());
         userRepository.save(user);
     }

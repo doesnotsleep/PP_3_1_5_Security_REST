@@ -4,7 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
+import ru.kata.spring.boot_security.demo.service.UserService;
+
 
 import java.security.Principal;
 import java.util.List;
@@ -13,9 +14,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class RestController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
-    public RestController(UserServiceImpl userService) {
+    public RestController(UserService userService) {
         this.userService = userService;
     }
 

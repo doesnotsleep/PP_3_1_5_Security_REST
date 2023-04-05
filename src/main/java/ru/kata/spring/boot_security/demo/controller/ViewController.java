@@ -4,15 +4,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
+import ru.kata.spring.boot_security.demo.service.UserService;
+
 
 import java.security.Principal;
 
 @Controller
 public class ViewController {
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
-    public ViewController(UserServiceImpl userService) {
+    public ViewController(UserService userService) {
         this.userService = userService;
     }
 
